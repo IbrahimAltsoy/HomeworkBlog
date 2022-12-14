@@ -13,7 +13,7 @@ namespace HomeworkBlog.Models
         public string Email { get; set; }
         [Display(Name = "Şifreniz"), StringLength(50)]
         public string Password { get; set; }
-        [Display(Name = "Eklenme Tarihi")]
+        [Display(Name = "Eklenme Tarihi"),ScaffoldColumn(false)]
         public DateTime CreatedTime { get; set; }
         [Display(Name="Durum")]
         public bool IsActive { get; set; }

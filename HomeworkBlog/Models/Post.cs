@@ -10,7 +10,7 @@ namespace HomeworkBlog.Models
         public string Name { get; set; }
         [Display(Name = "İçerik Açıklaması")]
         public string? Description { get; set; }
-        [Display(Name = "Eklenme Tarihi")]
+        [Display(Name = "Eklenme Tarihi"), ScaffoldColumn(false)]
         public DateTime CreatedTime { get; set; }
         [StringLength(150), Display(Name = "İçerik Resmi")]
         public string? Image { get; set; }

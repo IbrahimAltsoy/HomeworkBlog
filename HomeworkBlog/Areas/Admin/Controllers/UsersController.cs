@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Drawing2D;
 
 namespace HomeworkBlog.Areas.Admin.Controllers
-{
+{[Area("Admin")]
     public class UsersController : Controller
     {
         DatabaseContext _context= new DatabaseContext();
 
-        [Area("Admin")]
+        
         // GET: UserController
         public ActionResult Index()
         {
@@ -27,38 +27,54 @@ namespace HomeworkBlog.Areas.Admin.Controllers
         
         public ActionResult Create()
         {
-           
-           
             return View();
         }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(User user)
         {
-            return View();
+            try
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch 
+            {
+
+                ModelState.AddModelError("", "Hata oluştu");
+               
+            }
+            return View(user);
         }
 
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var user = _context.Users.Find(id);
+            return View(user);
         }
 
         // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, User user)
         {
             try
             {
+                var _user = _context.Users.Update(user);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Hata oluştu");
+                
             }
+            return View(user);
         }
 
         // GET: UserController/Delete/5
@@ -70,15 +86,18 @@ namespace HomeworkBlog.Areas.Admin.Controllers
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, User user)
         {
             try
             {
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+               
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
     }
