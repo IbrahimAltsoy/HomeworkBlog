@@ -80,7 +80,8 @@ namespace HomeworkBlog.Areas.Admin.Controllers
         // GET: UserController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var user = _context.Users.Find(id);
+            return View(user);
         }
 
         // POST: UserController/Delete/5
