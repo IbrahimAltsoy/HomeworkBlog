@@ -1,10 +1,18 @@
 using HomeworkBlog.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DatabaseContext>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+{
+    x.LoginPath = "/Admin/Login/";
+
+    x.Cookie.Name = "AdminLogin";
+    
+});// Admin giriþi için gerekli kod alanýdýr. 
 
 var app = builder.Build();
 
@@ -20,8 +28,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();// Admin giriþi için gerekli kod alanýdýr. 
 
-app.UseAuthorization();
+app.UseAuthorization();// Kullanýcý yetkilendirme 
 app.MapControllerRoute(
             name: "admin",
             pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}"

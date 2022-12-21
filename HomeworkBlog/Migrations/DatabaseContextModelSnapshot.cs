@@ -17,7 +17,7 @@ namespace HomeworkBlog.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -30,7 +30,7 @@ namespace HomeworkBlog.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -124,7 +124,7 @@ namespace HomeworkBlog.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2022, 12, 7, 20, 32, 18, 778, DateTimeKind.Local).AddTicks(7776),
+                            CreatedTime = new DateTime(2022, 12, 21, 22, 52, 16, 480, DateTimeKind.Local).AddTicks(8268),
                             Email = "a@gmail.com",
                             IsActive = true,
                             IsAdmin = true,

@@ -1,10 +1,12 @@
 ﻿using HomeworkBlog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Drawing2D;
 
 namespace HomeworkBlog.Areas.Admin.Controllers
-{[Area("Admin")]
+{
+    [Area("Admin"), Authorize]
     public class UsersController : Controller
     {
         DatabaseContext _context= new DatabaseContext();
