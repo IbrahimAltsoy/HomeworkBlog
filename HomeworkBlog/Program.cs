@@ -2,7 +2,7 @@ using HomeworkBlog.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//a@gmail.com þifre:12345  HomeworkBlog
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DatabaseContext>();
